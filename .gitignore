@@ -1,0 +1,3 @@
+.DS_Store
+l_openvino_toolkit_*
+volumes/models/**

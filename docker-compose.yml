@@ -1,0 +1,14 @@
+version: '3'
+services:
+    ov-object-detection:
+        build: .
+        image: ov-object-detection
+        restart: always
+        container_name: ov-object-detection
+        ports:
+            - '8089:5000'
+        volumes:
+            - './volumes/app:/opt/app'
+            - './volumes/models/faster_rcnn_inception_resnet_v2_atrous_coco_2018_01_28:/opt/model/'
+            #- './volumes/models/faster_rcnn_inception_v2_coco_2018_01_28:/opt/model/'
+            - './volumes/models:/opt/models_all/'
