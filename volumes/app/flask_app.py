@@ -121,7 +121,7 @@ class ModelManager():
             y_2 += 20
             rect = patches.Rectangle((x_1, y_1), x_2-x_1, y_2 - y_1, linewidth=1, edgecolor=color, facecolor='none')
             ax.add_patch(rect)
-            ax.text(x_1 + 2, y_1 - 10, '{} {}%'.format(class_label, score), fontsize=6, color='white', bbox=dict(facecolor=color, edgecolor='none', pad=1.0))
+            ax.text(x_1 + 2, y_1 - 10, '{} {}%'.format(class_label, score), fontsize=10, color='white', bbox=dict(facecolor=color, edgecolor='none', pad=1.0))
         
         buf = BytesIO()
         plt.savefig(buf, bbox_inches = 'tight', pad_inches = 0, format="jpg")
