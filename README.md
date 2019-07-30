@@ -20,6 +20,8 @@ python3 /opt/intel/openvino/inference_engine/samples/python_samples/classificati
 -d CPU
 
 ## Konvertera tf modell till ir
+Vid större modeller krävs mycket minne. "faster_rcnn_nas_coco" krävde 8GB.
+
 https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_Object_Detection_API_Models.html
 
 /opt/intel/openvino/deployment_tools/model_optimizer/mo_tf.py \
