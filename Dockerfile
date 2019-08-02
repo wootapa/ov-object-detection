@@ -39,6 +39,9 @@ RUN cd $INSTALL_DIR/deployment_tools/model_optimizer/install_prerequisites && \
     ./install_prerequisites.sh && \
     ./install_NCS_udev_rules.sh
 
+RUN cd ${INSTALL_DIR}/install_dependencies && \
+    ./install_NCS_udev_rules.sh
+
 # clean up 
 RUN apt autoremove -y && \
     rm -rf /openvino /var/lib/apt/lists/*
