@@ -4,6 +4,7 @@ services:
         build: .
         image: ov-object-detection
         restart: always
+        privileged: true
         container_name: ov-object-detection
         ports:
             - '8089:5000'
