@@ -18,11 +18,15 @@ RUN apt-get install -y --no-install-recommends \
         python3.5-dev \
         python3-pip \
         python3-setuptools \
-        sudo
+        python-pil \
+        sudo \
+        udev \
+        usbutils
 
 # installing OpenVINO dependencies
 RUN cd /openvino/ && \
-    ./install_openvino_dependencies.sh
+    ./install_openvino_dependencies.sh && \
+    ./install_NCS_udev_rules.sh
 
 RUN pip3 install numpy
 
@@ -39,7 +43,6 @@ RUN cd $INSTALL_DIR/deployment_tools/model_optimizer/install_prerequisites && \
 RUN apt autoremove -y && \
     rm -rf /openvino /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get install -y python-pil
 RUN pip3 install --upgrade pip && pip install matplotlib flask pillow
 
 # CMD ["/bin/bash"]
