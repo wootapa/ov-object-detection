@@ -36,8 +36,7 @@ RUN cd /openvino/ && \
 
 # Model Optimizer
 RUN cd $INSTALL_DIR/deployment_tools/model_optimizer/install_prerequisites && \
-    ./install_prerequisites.sh && \
-    ./install_NCS_udev_rules.sh
+    ./install_prerequisites.sh
 
 RUN cd ${INSTALL_DIR}/install_dependencies && \
     ./install_NCS_udev_rules.sh
