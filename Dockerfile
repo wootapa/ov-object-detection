@@ -25,8 +25,7 @@ RUN apt-get install -y --no-install-recommends \
 
 # installing OpenVINO dependencies
 RUN cd /openvino/ && \
-    ./install_openvino_dependencies.sh && \
-    ./install_NCS_udev_rules.sh
+    ./install_openvino_dependencies.sh
 
 RUN pip3 install numpy
 
@@ -37,7 +36,8 @@ RUN cd /openvino/ && \
 
 # Model Optimizer
 RUN cd $INSTALL_DIR/deployment_tools/model_optimizer/install_prerequisites && \
-    ./install_prerequisites.sh
+    ./install_prerequisites.sh && \
+    ./install_NCS_udev_rules.sh
 
 # clean up 
 RUN apt autoremove -y && \
