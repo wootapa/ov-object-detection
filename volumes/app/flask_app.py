@@ -93,7 +93,10 @@ class ModelManager():
             score = math.ceil(pred[2] * 100)
             result_list.append(Result(category, score))
         
-        result_image = self.plot_result_image(image, predictions)
+        # sort by class_id and then score
+        # negative class_id since person = 1 so others are more negative
+        predictions_sorted = sorted(predictions, key=lambda pred: (pred[1]*-1, pred[2]), reverse=False)
+        result_image = self.plot_result_image(image, predictions_sorted)
         result_summary = ResultSummary(result_list, result_image)
         return result_summary
     
@@ -119,7 +122,7 @@ class ModelManager():
             x_2 += 20
             y_1 -= 20
             y_2 += 20
-            rect = patches.Rectangle((x_1, y_1), x_2-x_1, y_2 - y_1, linewidth=1, edgecolor=color, facecolor='none')
+            rect = patches.Rectangle((x_1, y_1), x_2-x_1, y_2 - y_1, linewidth=1, edgecolor=color, facecolor='none', alpha=.3)
             ax.add_patch(rect)
             ax.text(x_1 + 2, y_1 - 10, '{} {}%'.format(class_label, score), fontsize=10, color='white', bbox=dict(facecolor=color, edgecolor='none', pad=1.0))
         
@@ -161,7 +164,7 @@ def index():
 def categories():
     categories = [] 
     for key in mgr._labels_map:
-        categories.append(mgr._labels_map[key])
+        categories.append(mgr._labels_map[key] + ' ' + str(key)) # -> "bicycle 2"
     categories.sort()
     return jsonify(categories)
 
